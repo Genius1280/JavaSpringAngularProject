@@ -6,17 +6,24 @@ import io.jsonwebtoken.security.SignatureException;
 import org.example.javaspringangularproject.entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class JWTTokenProvider {
+
     public static final Logger LOG = LoggerFactory.getLogger(JWTTokenProvider.class);
 
     public static final SecretKey key = Jwts.SIG.HS256.key().build();
+
+
 
     public String generateToken(Authentication authentication){
         User user = (User) authentication.getPrincipal();
